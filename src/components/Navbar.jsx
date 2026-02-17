@@ -2,10 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import { useAuth } from "../contextApi/AuthContext";
 import DesktopView from "../navbarComponents/DesktopView";
 import NavbarLogo from "../navbarComponents/NavbarLogo";
-import MobileView from "../navbarComponents/MobileView";
 import AvatarDropdown from "../navbarComponents/AvatarDropdown";
 
 export default function Navbar() {

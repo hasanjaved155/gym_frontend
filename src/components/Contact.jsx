@@ -1,6 +1,5 @@
 import { useState } from "react";
 import emailjs from "emailjs-com";
-import Navbar from "./Navbar";
 
 export default function Contact() {
   const [formData, setFormData] = useState({

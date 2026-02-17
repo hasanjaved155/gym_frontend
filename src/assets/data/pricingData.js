@@ -2,7 +2,7 @@ const plans = [
   {
     id: 1,
     name: "General Membership",
-    price: "₹500",
+    price: "₹700",
     period: "per month",
     description: "Full gym access with all equipment",
     features: [
@@ -16,7 +16,7 @@ const plans = [
   {
     id: 2,
     name: "Treadmill Membership",
-    price: "₹750",
+    price: "₹1000",
     period: "per month",
     description: "Treadmill access + general equipment",
     features: [

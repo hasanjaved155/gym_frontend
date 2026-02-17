@@ -43,7 +43,7 @@ export default function Hero() {
                   10:00 AM
                 </p>
                 <p>
-                  <span className="font-semibold">Evening:</span> 5:00 PM -
+                  <span className="font-semibold">Evening:</span> 4:00 PM -
                   10:00 PM
                 </p>
                 <p className="text-sm text-gray-400">Monday to Sunday</p>

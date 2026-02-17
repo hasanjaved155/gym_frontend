@@ -19,15 +19,16 @@ const handleLogout = async ({
       },
     );
 
-    logout();
-
     console.log("✅ Logout Success:", response?.data);
+  } catch (error) {
+    console.error("❌ Logout Error:", error.response?.data || error.message);
+    // Even if the server returns 401 (Token missing), we should proceed to logout locally
+  } finally {
+    logout();
 
     // Clear localStorage
     localStorage.removeItem("user");
 
-    // Update login status
-    // setIsLoggedIn(false);
     setIsDropdownOpen(false);
 
     // ✅ Dispatch event to ensure navbar updates
@@ -35,10 +36,6 @@ const handleLogout = async ({
 
     // Redirect to home
     navigate("/login");
-  } catch (error) {
-    console.error("❌ Logout Error:", error.response?.data || error.message);
-    alert("Logout failed! Please try again.");
-  } finally {
     setLoading(false);
   }
 };

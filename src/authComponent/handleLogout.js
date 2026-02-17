@@ -21,7 +21,7 @@ const handleLogout = async ({
 
     logout();
 
-    console.log("✅ Logout Success:", response.data);
+    console.log("✅ Logout Success:", response?.data);
 
     // Clear localStorage
     localStorage.removeItem("user");

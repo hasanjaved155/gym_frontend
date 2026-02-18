@@ -17,9 +17,12 @@ const handleResetPasswordSubmit = async (
   }
   setLoading(true);
   try {
-    const res = await axios?.post(`/users/reset-password/${id}/${token}`, {
-      password,
-    });
+    const res = await axios?.post(
+      `/api/v1/users/reset-password/${id}/${token}`,
+      {
+        password,
+      },
+    );
     alert(res?.data?.message || "Password reset successful");
     setTimeout(() => {
       navigate("/login");

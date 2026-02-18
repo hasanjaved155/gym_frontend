@@ -9,7 +9,7 @@ const handleLogout = async ({
   setLoading(true);
   try {
     const response = await axios.post(
-      "/users/logout",
+      "/api/v1/users/logout",
       {},
       {
         headers: {

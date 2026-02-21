@@ -28,6 +28,7 @@ const handleRegisterSubmit = async (
       password: "",
       phonenumber: "",
       avatar: null,
+      joinDate: "",
     });
     setPreview(null);
     // Store user data if needed

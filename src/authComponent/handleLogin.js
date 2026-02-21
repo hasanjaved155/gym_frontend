@@ -26,7 +26,6 @@ const handleLoginSubmit = async (
     console.log("✅ Login Success:", response?.data?.data?.user);
     setMessage("Login successful! ✅");
     setFormData({
-      username: "",
       email: "",
       password: "",
     });

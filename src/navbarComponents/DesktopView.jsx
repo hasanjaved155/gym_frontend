@@ -31,6 +31,13 @@ const DesktopView = () => {
         >
           Schedule
         </Link>
+
+        <Link
+          to="/feedback"
+          className="text-white dark:text-slate-300 hover:text-primary dark:hover:text-blue-400 transition font-semibold"
+        >
+          Review & Ratings
+        </Link>
       </div>
     </>
   );

@@ -17,6 +17,9 @@ import { useAuth } from "./contextApi/AuthContext";
 import UserRegister from "./components/auth/UserRegister";
 import ForgetPassword from "./components/auth/ForgetPassword";
 import ResetPassword from "./components/auth/ResetPassword";
+import UserProfile from "./profile/UserProfile";
+import EditProfile from "./profile/EditProfile";
+import Feedback from "../feedback/Feedback";
 
 axios.defaults.baseURL = "https://pandey-gym.vercel.app";
 axios.defaults.withCredentials = true;
@@ -33,6 +36,9 @@ function AppContent() {
     ) {
       alert("You are already registered");
       navigate("/");
+    } else if (!user && location.pathname === "/feedback") {
+      alert("Please login to give feedback");
+      navigate("/login");
     }
   }, [location.pathname, navigate]);
 
@@ -64,6 +70,13 @@ function AppContent() {
         <Route path="/login" element={<UserLogin />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
         <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
+
+        {/* Profile Data */}
+        <Route path="/user-profile" element={<UserProfile />} />
+        <Route path="/edit-profile" element={<EditProfile />} />
+
+        {/* feedback */}
+        <Route path="/feedback" element={<Feedback />} />
       </Routes>
     </>
   );

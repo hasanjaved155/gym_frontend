@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const response = await axios?.get("/users/auth-status", {
+        const response = await axios?.get("/api/v1/users/auth-status", {
           withCredentials: true, // Important for sending cookies
         });
 

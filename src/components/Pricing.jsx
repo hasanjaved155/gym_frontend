@@ -2,13 +2,16 @@ import plans from "../assets/data/pricingData";
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="bg-dark text-white py-20">
+    <section
+      id="pricing"
+      className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-20"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Affordable Pricing
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
             Simple and transparent pricing. Choose the plan that fits your
             fitness needs.
           </p>
@@ -21,7 +24,7 @@ export default function Pricing() {
               className={`rounded-lg p-8 transition-transform hover:scale-105 ${
                 plan.popular
                   ? "bg-gradient-to-br from-primary to-orange-600 ring-2 ring-primary"
-                  : "bg-gray-900 border border-gray-700"
+                  : "bg-slate-800 border border-slate-700"
               }`}
             >
               {plan.popular && (
@@ -34,7 +37,7 @@ export default function Pricing() {
 
               <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
               <p
-                className={`${plan.popular ? "text-white" : "text-gray-400"} mb-4`}
+                className={`${plan.popular ? "text-white" : "text-slate-400"} mb-4`}
               >
                 {plan.description}
               </p>
@@ -42,7 +45,7 @@ export default function Pricing() {
               <div className="mb-6">
                 <span className="text-5xl font-bold">{plan.price}</span>
                 <span
-                  className={`${plan.popular ? "text-white" : "text-gray-400"}`}
+                  className={`${plan.popular ? "text-white" : "text-slate-400"}`}
                 >
                   {" "}
                   {plan.period}

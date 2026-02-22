@@ -6,6 +6,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import HomePage from "./pages/HomePage";
 import SchedulePage from "./pages/SchedulePage";
 import UserLogin from "./components/auth/UserLogin";
@@ -19,9 +20,9 @@ import ForgetPassword from "./components/auth/ForgetPassword";
 import ResetPassword from "./components/auth/ResetPassword";
 import UserProfile from "./profile/UserProfile";
 import EditProfile from "./profile/EditProfile";
-import Feedback from "../feedback/Feedback";
+import Feedback from "./feedback/Feedback";
 
-axios.defaults.baseURL = "http://localhost:8080";
+axios.defaults.baseURL = "https://pandey-gym.vercel.app";
 axios.defaults.withCredentials = true;
 
 function AppContent() {
@@ -57,6 +58,7 @@ function AppContent() {
 
   return (
     <>
+      <Toaster />
       <Navbar />
       <Routes>
         {/* main pages */}

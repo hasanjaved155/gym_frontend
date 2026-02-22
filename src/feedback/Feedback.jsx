@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useAuth } from "../src/contextApi/AuthContext";
+import { useAuth } from "../contextApi/AuthContext";
 import ShowFeedbacks from "./ShowFeedbacks";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Feedback = () => {
   const [rating, setRating] = useState(0);
@@ -13,14 +14,17 @@ const Feedback = () => {
     e.preventDefault();
     try {
       await axios.post("/api/v1/feedback/give-feedback", { rating, feedback });
-      alert("Feedback submitted successfully");
+      toast.success("Feedback submitted successfully");
       setRating(0);
       setFeedback("");
       setRefresh(!refresh);
       setHover(0);
-    } catch (e) {
-      console.log(e);
-      alert("Error submitting feedback");
+    } catch (error) {
+      // Error message ko display karo
+      const errorMessage =
+        error.response?.data?.message || "Error submitting feedback";
+      toast.error(errorMessage);
+      console.log(error.response?.data?.message);
     }
   };
 

@@ -33,6 +33,13 @@ const MobileView = ({ setIsDropdownOpen }) => {
         >
           Contact
         </Link>
+        <Link
+          to="/feedback"
+          className="block px-4 py-3 text-sm text-gray-300 hover:bg-gray-700/50 hover:text-white transition-colors"
+          onClick={() => setIsDropdownOpen(false)}
+        >
+          Feedback & Ratings
+        </Link>
       </div>
     </>
   );

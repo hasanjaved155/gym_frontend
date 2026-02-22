@@ -21,7 +21,7 @@ import UserProfile from "./profile/UserProfile";
 import EditProfile from "./profile/EditProfile";
 import Feedback from "../feedback/Feedback";
 
-axios.defaults.baseURL = "https://pandey-gym.vercel.app";
+axios.defaults.baseURL = "http://localhost:8080";
 axios.defaults.withCredentials = true;
 
 function AppContent() {

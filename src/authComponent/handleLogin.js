@@ -8,6 +8,7 @@ const handleLoginSubmit = async (
   setFormData,
   setLoading,
   formData,
+  setUser,
 ) => {
   e.preventDefault();
   setLoading(true);
@@ -33,6 +34,7 @@ const handleLoginSubmit = async (
     if (response?.data) {
       // console.log("Storing user data in localStorage:", response.data);
       localStorage.setItem("user", JSON.stringify(response?.data?.data?.user));
+      setUser(response?.data?.data?.user);
       navigate("/");
     }
   } catch (error) {

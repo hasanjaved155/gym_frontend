@@ -1,12 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
 import MobileView from "./MobileView";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../contextApi/AuthContext";
 import axios from "axios";
 import handleLogout from "../authComponent/handleLogout";
+import { useAuth } from "../contextApi/useAuth";
 
 const AvatarDropdown = () => {
-  const { isLoggedIn, logout, avatar } = useAuth();
+  const { isLoggedIn, logout, user } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -34,7 +34,7 @@ const AvatarDropdown = () => {
           <span className="sr-only">Open user menu</span>
           <img
             src={
-              avatar ||
+              user?.avatar ||
               "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
             }
             alt="User Menu"
@@ -56,6 +56,41 @@ const AvatarDropdown = () => {
 
             {isLoggedIn ? (
               <div className="py-1">
+                {/* Admin Section */}
+                {import.meta.env.VITE_ADMIN_EMAIL &&
+                  import.meta.env.VITE_ADMIN_EMAIL === user?.email && (
+                    <div className="border-b border-gray-700 pb-2 mb-2">
+                      <div className="px-4 py-2">
+                        <p className="text-xs font-semibold text-blue-400 mb-2">
+                          Hello Admin
+                        </p>
+                        <Link
+                          to="/dashboard"
+                          onClick={() => setIsDropdownOpen(false)}
+                        >
+                          <button className="flex items-center w-full text-left px-4 py-3 text-sm text-gray-200 hover:bg-blue-600/20 hover:text-blue-400 transition-all duration-200 group">
+                            <div className="p-1.5 mr-3 bg-blue-600/20 rounded-full group-hover:bg-blue-600/30 transition-colors">
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
+                                  d="M3 12l2-3m0 0l7-4 7 4M5 9v10a1 1 0 001 1h12a1 1 0 001-1V9m-9 11l4-4m0 0l4 4m-4-4V3"
+                                ></path>
+                              </svg>
+                            </div>
+                            <span className="font-medium">Dashboard</span>
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                {/* User Section */}
                 <Link
                   to="/user-profile"
                   onClick={() => setIsDropdownOpen(false)}

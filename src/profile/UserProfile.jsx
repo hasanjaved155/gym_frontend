@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "../contextApi/AuthContext";
+import { useAuth } from "../contextApi/useAuth";
 import { Link } from "react-router-dom";
 
 const UserProfile = () => {

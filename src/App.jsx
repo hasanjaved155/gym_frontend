@@ -14,15 +14,20 @@ import Contact from "./components/Contact";
 import Pricing from "./components/Pricing";
 import Navbar from "./components/Navbar";
 import axios from "axios";
-import { useAuth } from "./contextApi/AuthContext";
+import { useAuth } from "./contextApi/useAuth";
 import UserRegister from "./components/auth/UserRegister";
 import ForgetPassword from "./components/auth/ForgetPassword";
 import ResetPassword from "./components/auth/ResetPassword";
 import UserProfile from "./profile/UserProfile";
 import EditProfile from "./profile/EditProfile";
 import Feedback from "./feedback/Feedback";
+import Dashboard from "./dashboard/Dashboard";
+import DashboardStats from "./dashboard/DashboardStats";
+import ActiveMembers from "./dashboard/dashbaordComponents/ActiveMembers";
+import ExpiringSoon from "./dashboard/dashbaordComponents/ExpiringSoon ";
+import ExpiredMembers from "./dashboard/dashbaordComponents/ExpiredMembers";
 
-axios.defaults.baseURL = "https://pandey-gym.vercel.app";
+axios.defaults.baseURL = "http://localhost:8080";
 axios.defaults.withCredentials = true;
 
 function AppContent() {
@@ -79,6 +84,14 @@ function AppContent() {
 
         {/* feedback */}
         <Route path="/feedback" element={<Feedback />} />
+
+        {/* dashboard */}
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route index element={<DashboardStats />} />
+          <Route path="active-members" element={<ActiveMembers />} />
+          <Route path="expiring-soon" element={<ExpiringSoon />} />
+          <Route path="expired-members" element={<ExpiredMembers />} />
+        </Route>
       </Routes>
     </>
   );

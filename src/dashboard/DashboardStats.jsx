@@ -9,28 +9,22 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { fetchMembers } from "./dashbaordComponents/membersHandlers.js/fetchMembers";
 
 const DashboardStats = () => {
   const [stats, setStats] = useState({
     total: 0,
-    active: 0,
     expired: 0,
     expiringSoon: 0,
   });
 
-  useEffect(() => {
-    const fetchMembers = async () => {
-      try {
-        const response = await axios.get("/members");
-        const data = response.data;
-        calculateStats(data);
-      } catch (error) {
-        console.error("Error fetching members:", error);
-      }
-    };
+  const [active, setActive] = useState([]);
 
-    fetchMembers();
+  useEffect(() => {
+    fetchMembers(setActive);
   }, []);
+
+  // console.log(active.length);
 
   const calculateStats = (data) => {
     const now = new Date();
@@ -90,9 +84,9 @@ const DashboardStats = () => {
   );
 
   const pieData = [
-    { name: "Active", value: stats.active, color: "#10B981" }, // Green
-    { name: "Expiring Soon", value: stats.expiringSoon, color: "#F59E0B" }, // Yellow
-    { name: "Expired", value: stats.expired, color: "#EF4444" }, // Red
+    { name: "Active", value: active.length, color: "#10B981" }, // Green
+    { name: "Expiring Soon", value: active.length, color: "#F59E0B" }, // Yellow
+    { name: "Expired", value: active.length, color: "#EF4444" }, // Red
   ];
 
   return (
@@ -104,7 +98,7 @@ const DashboardStats = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
         <StatCard
           title="Active Members"
-          count={stats.active}
+          count={active.length}
           color="border-green-500"
           link="/dashboard/active-members"
           icon={
@@ -125,7 +119,7 @@ const DashboardStats = () => {
         />
         <StatCard
           title="Expiring Soon"
-          count={stats.expiringSoon}
+          count={active.length}
           color="border-yellow-500"
           link="/dashboard/expiring-soon"
           icon={
@@ -146,7 +140,7 @@ const DashboardStats = () => {
         />
         <StatCard
           title="Expired Members"
-          count={stats.expired}
+          count={active.length}
           color="border-red-500"
           link="/dashboard/expired-members"
           icon={

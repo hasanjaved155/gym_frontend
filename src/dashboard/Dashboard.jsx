@@ -60,7 +60,7 @@ const Dashboard = () => {
             className="w-10 h-10 rounded-full border-2 border-white object-cover"
           />
           <h2 className="text-lg font-bold text-white truncate">
-            Welcome!! {user.username?.split(" ")[1]}
+            Welcome!! {user?.username?.split(" ")[1]}
           </h2>
         </div>
         <nav className="mt-6 space-y-2 px-3">

@@ -27,7 +27,7 @@ import ActiveMembers from "./dashboard/dashbaordComponents/ActiveMembers";
 import ExpiringSoon from "./dashboard/dashbaordComponents/ExpiringSoon ";
 import ExpiredMembers from "./dashboard/dashbaordComponents/ExpiredMembers";
 
-axios.defaults.baseURL = "http://localhost:8080";
+axios.defaults.baseURL = "https://pandey-gym.vercel.app";
 axios.defaults.withCredentials = true;
 
 function AppContent() {
@@ -90,7 +90,6 @@ function AppContent() {
           <Route index element={<DashboardStats />} />
           <Route path="active-members" element={<ActiveMembers />} />
           <Route path="expiring-soon" element={<ExpiringSoon />} />
-          <Route path="expired-members" element={<ExpiredMembers />} />
         </Route>
       </Routes>
     </>

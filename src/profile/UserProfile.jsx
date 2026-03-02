@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const UserProfile = () => {
   const { user } = useAuth();
-  const [active, setActive] = React.useState(false);
 
   // Calculate Attendance (Days since joining)
   const joinDateStr = user?.joinDate;
@@ -18,7 +17,6 @@ const UserProfile = () => {
     nextPaymentDate.setMonth(nextPaymentDate.getMonth() + 1);
     const today = new Date();
     while (nextPaymentDate < today) {
-      setActive(true);
       nextPaymentDate.setMonth(nextPaymentDate.getMonth() + 1);
     }
     remainingDays = Math.ceil(
@@ -116,8 +114,12 @@ const UserProfile = () => {
               <div className="space-y-4">
                 <div className="flex justify-between items-center p-3 bg-slate-700/50 rounded-lg">
                   <span className="text-slate-300">Plan</span>
-                  <span className="text-green-400 font-bold bg-green-400/10 px-3 py-1 rounded-full text-sm">
-                    Active
+                  <span
+                    className={`px-3 py-1 rounded-full text-sm font-medium text-white ${
+                      user?.active !== false ? "bg-green-500" : "bg-red-500"
+                    }`}
+                  >
+                    {user?.active !== false ? "Active" : "Inactive"}
                   </span>
                 </div>
                 <div className="flex justify-between items-center p-3 bg-slate-700/50 rounded-lg">

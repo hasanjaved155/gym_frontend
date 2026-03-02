@@ -13,15 +13,17 @@ import { fetchMembers } from "./dashbaordComponents/membersHandlers.js/fetchMemb
 
 const DashboardStats = () => {
   const [stats, setStats] = useState({
-    total: 0,
-    expired: 0,
+    active: 0,
     expiringSoon: 0,
   });
 
   const [active, setActive] = useState([]);
 
   useEffect(() => {
-    fetchMembers(setActive);
+    fetchMembers((data) => {
+      setActive(data);
+      calculateStats(data);
+    });
   }, []);
 
   // console.log(active.length);
@@ -31,17 +33,14 @@ const DashboardStats = () => {
     const threeDaysFromNow = new Date();
     threeDaysFromNow.setDate(now.getDate() + 3);
 
-    let active = 0;
-    let expired = 0;
+    let activeCount = 0;
     let expiringSoon = 0;
 
     data.forEach((member) => {
       const expirationDate = new Date(member.expirationDate);
 
-      if (expirationDate < now) {
-        expired++;
-      } else {
-        active++;
+      if (member.active !== false && expirationDate >= now) {
+        activeCount++;
         if (expirationDate <= threeDaysFromNow) {
           expiringSoon++;
         }
@@ -49,9 +48,7 @@ const DashboardStats = () => {
     });
 
     setStats({
-      total: data.length,
-      active,
-      expired,
+      active: activeCount,
       expiringSoon,
     });
   };
@@ -84,9 +81,12 @@ const DashboardStats = () => {
   );
 
   const pieData = [
-    { name: "Active", value: active.length, color: "#10B981" }, // Green
-    { name: "Expiring Soon", value: active.length, color: "#F59E0B" }, // Yellow
-    { name: "Expired", value: active.length, color: "#EF4444" }, // Red
+    {
+      name: "Active",
+      value: stats.active - stats.expiringSoon,
+      color: "#10B981",
+    }, // Green (Healthy)
+    { name: "Expiring Soon", value: stats.expiringSoon, color: "#F59E0B" }, // Yellow
   ];
 
   return (
@@ -95,10 +95,10 @@ const DashboardStats = () => {
         Admin Dashboard
       </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8">
         <StatCard
           title="Active Members"
-          count={active.length}
+          count={stats.active - stats.expiringSoon}
           color="border-green-500"
           link="/dashboard/active-members"
           icon={
@@ -119,7 +119,7 @@ const DashboardStats = () => {
         />
         <StatCard
           title="Expiring Soon"
-          count={active.length}
+          count={stats.expiringSoon}
           color="border-yellow-500"
           link="/dashboard/expiring-soon"
           icon={
@@ -134,27 +134,6 @@ const DashboardStats = () => {
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-          }
-        />
-        <StatCard
-          title="Expired Members"
-          count={active.length}
-          color="border-red-500"
-          link="/dashboard/expired-members"
-          icon={
-            <svg
-              className="w-6 h-6 md:w-8 md:h-8 text-red-500"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
           }

@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { fetchMembers } from "./membersHandlers.js/fetchMembers";
+import toast from "react-hot-toast";
 
 const ExpiringSoon = () => {
   const [members, setMembers] = useState([]);
+  const [sending, setSending] = useState(null);
 
   useEffect(() => {
     fetchMembers((data) => {
@@ -14,11 +16,36 @@ const ExpiringSoon = () => {
 
       const expiring = data.filter((member) => {
         const expirationDate = new Date(member.expirationDate);
-        return expirationDate >= now && expirationDate <= threeDaysFromNow;
+        return (
+          member.active !== false &&
+          expirationDate >= now &&
+          expirationDate <= threeDaysFromNow
+        );
       });
       setMembers(expiring);
     });
   }, []);
+
+  // ✅ Send Email Function
+  const handleSendEmail = async (user) => {
+    try {
+      setSending(user._id);
+
+      const response = await axios.post("/api/v1/users/send-expiration-email", {
+        userId: user._id,
+      });
+
+      // console.log("Email sent:", response.data);
+      toast(`✅ Email sent to ${response?.data?.data?.email} successfully!`);
+    } catch (error) {
+      console.error("Error sending email:", error);
+      toast(
+        `❌ Failed to send email: ${error.response?.data?.message || error.message}`,
+      );
+    } finally {
+      setSending(null);
+    }
+  };
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -107,6 +134,17 @@ const ExpiringSoon = () => {
                         )}
                       </span>
                     </div>
+                    <div className="flex justify-end border-t border-gray-100 pt-3">
+                      <span
+                        onClick={() => handleSendEmail(member)}
+                        disabled={sending === member._id}
+                        className="px-3 py-2 cursor-pointer  bg-red-600 hover:bg-red-700 text-white rounded text-sm font-medium disabled:opacity-50"
+                      >
+                        {sending === member._id
+                          ? "Sending..."
+                          : "📧 Send Email"}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -146,6 +184,7 @@ const ExpiringSoon = () => {
                 <th className="px-6 py-4">Join Date</th>
                 <th className="px-6 py-4">Expiration Date</th>
                 <th className="px-6 py-4">Status</th>
+                <th className="px-6 py-4">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
@@ -168,6 +207,18 @@ const ExpiringSoon = () => {
                     <td className="px-6 py-4">
                       <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                         Expiring Soon
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 space-x-2 flex">
+                      {/* WhatsApp Button */}
+                      <span
+                        onClick={() => handleSendEmail(member)}
+                        disabled={sending === member._id}
+                        className="px-3 py-2 cursor-pointer bg-red-600 hover:bg-red-700 text-white rounded text-sm font-medium disabled:opacity-50"
+                      >
+                        {sending === member._id
+                          ? "Sending..."
+                          : "📧 Send Email"}
                       </span>
                     </td>
                   </tr>

@@ -46,7 +46,7 @@ const Dashboard = () => {
 
       {/* Sidebar */}
       <div
-        className={`w-64 bg-white shadow-lg min-h-screen fixed left-0 top-20 z-20 transition-transform duration-300 ease-in-out ${
+        className={`w-80 bg-white shadow-lg min-h-screen fixed left-0 top-20 z-20 transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0`}
       >
@@ -105,19 +105,6 @@ const Dashboard = () => {
           >
             ⏰ Expiring Soon
           </NavLink>
-          <NavLink
-            to="/dashboard/expired-members"
-            onClick={() => setIsSidebarOpen(false)}
-            className={({ isActive }) =>
-              `block px-6 py-3 text-gray-700 font-medium rounded-lg transition-all duration-200 border-l-4 ${
-                isActive
-                  ? "bg-red-50 text-red-600 border-red-600 shadow-md"
-                  : "border-transparent hover:bg-gray-50 hover:text-gray-900"
-              }`
-            }
-          >
-            ❌ Expired Members
-          </NavLink>
         </nav>
       </div>
 
@@ -132,7 +119,7 @@ const Dashboard = () => {
       ></div>
 
       {/* Main Content */}
-      <div className="flex-1 md:ml-64 transition-all duration-300">
+      <div className="flex-1 md:ml-80 transition-all duration-300">
         <div className="min-h-screen bg-gray-50 p-4 md:p-8">
           <Outlet />
         </div>

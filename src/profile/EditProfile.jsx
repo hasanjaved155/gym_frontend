@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../contextApi/AuthContext";
+import { useAuth } from "../contextApi/useAuth";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const EditProfile = () => {
-  const { user, login } = useAuth();
+  const { user, setUser } = useAuth();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -49,16 +49,18 @@ const EditProfile = () => {
       }
 
       // Single route for updating profile
-      await axios.patch("/api/v1/users/update-profile", data, {
+      const response = await axios.patch("/api/v1/users/update-profile", data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
+      console.log("Profile update response:", response.data.data);
+
       // 3. Fetch updated user data to refresh context
-      const response = await axios.get("/api/v1/users/auth-status");
+      // const response = await axios.get("/api/v1/users/auth-status");
 
       // Update Auth Context
       if (response?.data?.data) {
-        login(response.data.data);
+        setUser(response.data.data);
         localStorage.setItem(
           "user",
           JSON.stringify(response?.data?.data?.user),

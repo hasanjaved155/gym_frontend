@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../contextApi/AuthContext";
+import { useAuth } from "../../contextApi/useAuth";
 import handleLoginSubmit from "../../authComponent/handleLogin";
 
 export default function UserLogin() {
-  const { login } = useAuth();
+  const { login, setUser } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -48,6 +48,7 @@ export default function UserLogin() {
                 setFormData,
                 setLoading,
                 formData,
+                setUser,
               )
             }
             className="space-y-4 sm:space-y-6"

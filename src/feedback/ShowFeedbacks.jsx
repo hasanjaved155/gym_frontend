@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import TimeAgo from "./timeago/TimeAgo";
-import { useAuth } from "../contextApi/AuthContext";
+import { useAuth } from "../contextApi/useAuth";
 import toast from "react-hot-toast";
 
 const ShowFeedbacks = ({ refresh }) => {

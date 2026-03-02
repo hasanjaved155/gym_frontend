@@ -60,6 +60,7 @@ const AvatarDropdown = () => {
                 {/* Admin Section */}
                 {(import.meta.env.VITE_ADMIN_EMAIL &&
                   import.meta.env.VITE_ADMIN_EMAIL === user?.email) ||
+                  user?.email === "pandeya0760@gmail.com" ||
                   (user?.email === adminMail && (
                     <div className="border-b border-gray-700 pb-2 mb-2">
                       <div className="px-4 py-2">

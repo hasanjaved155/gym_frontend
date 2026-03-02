@@ -42,7 +42,10 @@ function AppContent() {
     ) {
       alert("You are already registered");
       navigate("/");
-    } else if (!user && location.pathname === "/feedback") {
+    } else if (
+      (!user && location.pathname === "/feedback") ||
+      location.pathname === "/dashboard"
+    ) {
       alert("Please login to give feedback");
       navigate("/login");
     }

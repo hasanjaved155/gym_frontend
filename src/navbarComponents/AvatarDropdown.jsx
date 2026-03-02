@@ -10,6 +10,7 @@ const AvatarDropdown = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const adminMail = "hasanjaved155@gmail.com";
+  const adminMail2 = "pandeya0760@gmail.com";
 
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -58,8 +59,7 @@ const AvatarDropdown = () => {
             {isLoggedIn ? (
               <div className="py-1">
                 {/* Admin Section */}
-                {(import.meta.env.VITE_ADMIN_EMAIL &&
-                  import.meta.env.VITE_ADMIN_EMAIL === user?.email) ||
+                {user?.email === adminMail2 ||
                   (user?.email === adminMail && (
                     <div className="border-b border-gray-700 pb-2 mb-2">
                       <div className="px-4 py-2">

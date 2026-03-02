@@ -6,7 +6,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import HomePage from "./pages/HomePage";
 import SchedulePage from "./pages/SchedulePage";
 import UserLogin from "./components/auth/UserLogin";
@@ -26,6 +26,7 @@ import DashboardStats from "./dashboard/DashboardStats";
 import ActiveMembers from "./dashboard/dashbaordComponents/ActiveMembers";
 import ExpiringSoon from "./dashboard/dashbaordComponents/ExpiringSoon ";
 import ExpiredMembers from "./dashboard/dashbaordComponents/ExpiredMembers";
+import ProtectedRoute from "./protectRoutes/ProtectedRoute";
 
 axios.defaults.baseURL = "http://localhost:8080";
 axios.defaults.withCredentials = true;
@@ -40,11 +41,8 @@ function AppContent() {
       user &&
       (location.pathname === "/register" || location.pathname === "/login")
     ) {
-      alert("You are already registered");
+      toast.error("You are already registered");
       navigate("/");
-    } else if (!user && location.pathname === "/feedback") {
-      alert("Please login to give feedback");
-      navigate("/login");
     }
   }, [location.pathname, navigate]);
 
@@ -83,10 +81,23 @@ function AppContent() {
         <Route path="/edit-profile" element={<EditProfile />} />
 
         {/* feedback */}
-        <Route path="/feedback" element={<Feedback />} />
-
+        <Route
+          path="/feedback"
+          element={
+            <ProtectedRoute>
+              <Feedback />
+            </ProtectedRoute>
+          }
+        />
         {/* dashboard */}
-        <Route path="/dashboard" element={<Dashboard />}>
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<DashboardStats />} />
           <Route path="active-members" element={<ActiveMembers />} />
           <Route path="expiring-soon" element={<ExpiringSoon />} />

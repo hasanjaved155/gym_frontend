@@ -129,6 +129,29 @@ const ActiveMembers = () => {
                           className="block w-full rounded-lg border-gray-300 bg-gray-50 text-gray-900 focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5"
                         />
                       </div>
+
+                      <div className="flex items-center text-sm text-gray-600 mb-4 bg-gray-50 p-3 rounded-lg">
+                        <svg
+                          className="w-4 h-4 mr-2 text-gray-400"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          />
+                        </svg>
+                        <span className="font-medium mr-2">Expires At:</span>
+                        {new Date(member.expirationDate).toLocaleDateString(
+                          undefined,
+                          {
+                            dateStyle: "medium",
+                          },
+                        )}
+                      </div>
                       <div className="flex gap-3 pt-2">
                         <button
                           onClick={() => handleSaveClick(member._id)}
@@ -181,11 +204,34 @@ const ActiveMembers = () => {
                           />
                         </svg>
                         <span className="font-medium mr-2">Joined:</span>
-                        {new Date(
-                          member.joinDate || member.joinedDate,
-                        ).toLocaleDateString(undefined, {
-                          dateStyle: "medium",
-                        })}
+                        {new Date(member.joinDate).toLocaleDateString(
+                          undefined,
+                          {
+                            dateStyle: "medium",
+                          },
+                        )}
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600 mb-4 bg-gray-50 p-3 rounded-lg">
+                        <svg
+                          className="w-4 h-4 mr-2 text-gray-400"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          />
+                        </svg>
+                        <span className="font-medium mr-2">Expires At:</span>
+                        {new Date(member.expirationDate).toLocaleDateString(
+                          undefined,
+                          {
+                            dateStyle: "medium",
+                          },
+                        )}
                       </div>
 
                       <div className="flex justify-end border-t border-gray-100 pt-3">
@@ -249,6 +295,7 @@ const ActiveMembers = () => {
                 <th className="px-6 py-4">Name</th>
                 <th className="px-6 py-4">Email</th>
                 <th className="px-6 py-4">Join Date</th>
+                <th className="px-6 py-4">Expires At</th>
                 <th className="px-6 py-4">Status</th>
                 <th className="px-6 py-4">Actions</th>
               </tr>
@@ -276,6 +323,16 @@ const ActiveMembers = () => {
                             onChange={handleChange}
                             className="rounded border-gray-300 text-cyan-900 text-sm p-1 border"
                           />
+                        </td>
+                        <td className="px-6 py-4 text-gray-500">
+                          {new Date(member.expirationDate).toLocaleDateString(
+                            "en-US",
+                            {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            },
+                          )}
                         </td>
                         <td className="px-6 py-4">
                           <select
@@ -313,6 +370,16 @@ const ActiveMembers = () => {
                         </td>
                         <td className="px-6 py-4 text-gray-500">
                           {new Date(member.joinDate).toLocaleDateString(
+                            "en-US",
+                            {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            },
+                          )}
+                        </td>
+                        <td className="px-6 py-4 text-gray-500">
+                          {new Date(member.expirationDate).toLocaleDateString(
                             "en-US",
                             {
                               year: "numeric",

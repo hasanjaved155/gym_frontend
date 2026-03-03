@@ -78,11 +78,19 @@ const ExpiredMembers = () => {
                 </p>
                 <p className="text-sm text-gray-600 mb-1">
                   <span className="font-medium">Joined:</span>{" "}
-                  {new Date(member.joinDate).toLocaleDateString()}
+                  {new Date(member.joinDate).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
                 </p>
                 <p className="text-sm text-gray-600">
                   <span className="font-medium">Expires:</span>{" "}
-                  {new Date(member.expirationDate).toLocaleDateString()}
+                  {new Date(member.expirationDate).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
                 </p>
                 <div className="mt-4 flex justify-end">
                   <button
@@ -127,10 +135,21 @@ const ExpiredMembers = () => {
                     </td>
                     <td className="px-6 py-4 text-gray-500">{member.email}</td>
                     <td className="px-6 py-4 text-gray-500">
-                      {new Date(member.joinDate).toLocaleDateString()}
+                      {new Date(member.joinDate).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
                     </td>
                     <td className="px-6 py-4 text-gray-500">
-                      {new Date(member.expirationDate).toLocaleDateString()}
+                      {new Date(member.expirationDate).toLocaleDateString(
+                        "en-US",
+                        {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        },
+                      )}
                     </td>
                     <td className="px-6 py-4">
                       <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">

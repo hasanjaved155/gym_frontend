@@ -106,10 +106,11 @@ const ExpiringSoon = () => {
                       </svg>
                       <span className="font-medium mr-auto">Joined:</span>
                       <span>
-                        {new Date(member.joinDate).toLocaleDateString(
-                          undefined,
-                          { dateStyle: "medium" },
-                        )}
+                        {new Date(member.joinDate).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
                       </span>
                     </div>
 
@@ -132,8 +133,12 @@ const ExpiringSoon = () => {
                       </span>
                       <span className="font-bold text-red-700">
                         {new Date(member.expirationDate).toLocaleDateString(
-                          undefined,
-                          { dateStyle: "medium" },
+                          "en-US",
+                          {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          },
                         )}
                       </span>
                     </div>
@@ -202,10 +207,21 @@ const ExpiringSoon = () => {
                     </td>
                     <td className="px-6 py-4 text-gray-500">{member.email}</td>
                     <td className="px-6 py-4 text-gray-500">
-                      {new Date(member.joinDate).toLocaleDateString()}
+                      {new Date(member.joinDate).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
                     </td>
                     <td className="px-6 py-4 text-gray-500">
-                      {new Date(member.expirationDate).toLocaleDateString()}
+                      {new Date(member.expirationDate).toLocaleDateString(
+                        "en-US",
+                        {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        },
+                      )}
                     </td>
                     <td className="px-6 py-4">
                       <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">

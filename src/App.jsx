@@ -28,7 +28,7 @@ import ExpiringSoon from "./dashboard/dashbaordComponents/ExpiringSoon ";
 import ExpiredMembers from "./dashboard/dashbaordComponents/ExpiredMembers";
 import ProtectedRoute from "./protectRoutes/ProtectedRoute";
 
-axios.defaults.baseURL = "http://localhost:8080";
+axios.defaults.baseURL = "https://pandey-gym.vercel.app";
 axios.defaults.withCredentials = true;
 
 function AppContent() {

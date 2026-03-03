@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import schedule from "../assets/data/scheduleData";
 export default function SchedulePage() {
@@ -15,18 +16,23 @@ export default function SchedulePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4">
-            {schedule.map((item, index) => (
-              <div
-                key={index}
-                className={`bg-gradient-to-br ${item.color} rounded-lg p-6 text-white shadow-lg hover:shadow-2xl transition-all transform hover:scale-105 text-center`}
-              >
-                <div className="text-5xl mb-3">{item.emoji}</div>
-                <h3 className="text-lg font-bold mb-2">{item.day}</h3>
-                <p className="text-sm font-semibold opacity-90">
-                  {item.workout}
-                </p>
-              </div>
-            ))}
+            {schedule.map((item, index) => {
+              const Wrapper = item.link ? Link : "div";
+              const props = item.link ? { to: item.link } : {};
+              return (
+                <Wrapper
+                  key={index}
+                  {...props}
+                  className={`bg-gradient-to-br ${item.color} rounded-lg p-6 text-white shadow-lg hover:shadow-2xl transition-all transform hover:scale-105 text-center block`}
+                >
+                  <div className="text-5xl mb-3">{item.emoji}</div>
+                  <h3 className="text-lg font-bold mb-2">{item.day}</h3>
+                  <p className="text-sm font-semibold opacity-90">
+                    {item.workout}
+                  </p>
+                </Wrapper>
+              );
+            })}
           </div>
 
           {/* Summary Box */}

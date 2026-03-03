@@ -4,6 +4,7 @@ const schedule = [
     workout: "Chest",
     emoji: "🫀",
     color: "from-red-600 to-red-700",
+    link: "/chest",
   },
   {
     day: "Tuesday",

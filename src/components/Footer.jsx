@@ -23,7 +23,7 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div>
+          {/* <div>
             <h4 className="text-white font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
@@ -42,7 +42,7 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Follow Us */}
           {/* <div>
@@ -70,7 +70,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="flex flex-col md:flex-row justify-between items-center text-sm">
           <p>&copy; {currentYear} Pandey Gym. All rights reserved.</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
+          {/* <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="hover:text-primary transition">
               Privacy Policy
             </a>
@@ -80,7 +80,7 @@ export default function Footer() {
             <a href="#" className="hover:text-primary transition">
               Contact Us
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

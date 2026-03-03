@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import plans from "../assets/data/pricingData";
 
 export default function Pricing() {
@@ -51,16 +52,17 @@ export default function Pricing() {
                   {plan.period}
                 </span>
               </div>
-
-              <button
-                className={`w-full py-3 rounded-lg font-semibold mb-8 transition ${
-                  plan.popular
-                    ? "bg-white text-primary hover:bg-gray-100"
-                    : "border-2 border-primary text-primary hover:bg-primary hover:text-white"
-                }`}
-              >
-                Select Plan
-              </button>
+              <Link to="/contact">
+                <button
+                  className={`w-full py-3 rounded-lg font-semibold mb-8 transition ${
+                    plan.popular
+                      ? "bg-white text-primary hover:bg-gray-100"
+                      : "border-2 border-primary text-primary hover:bg-primary hover:text-white"
+                  }`}
+                >
+                  Select Plan
+                </button>
+              </Link>
 
               <ul className="space-y-4">
                 {plan.features.map((feature, idx) => (

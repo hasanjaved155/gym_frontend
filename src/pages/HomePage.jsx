@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 import Hero from "../components/Hero";
+import Pricing from "../components/Pricing";
 
 import Footer from "../components/Footer";
 
@@ -25,6 +26,7 @@ export default function HomePage() {
       <div id="home">
         <Hero />
       </div>
+      <Pricing />
       <Footer />
     </>
   );

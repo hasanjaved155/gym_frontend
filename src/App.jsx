@@ -101,6 +101,7 @@ function AppContent() {
           <Route index element={<DashboardStats />} />
           <Route path="active-members" element={<ActiveMembers />} />
           <Route path="expiring-soon" element={<ExpiringSoon />} />
+          <Route path="expired" element={<ExpiredMembers />} />
         </Route>
       </Routes>
     </>

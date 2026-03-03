@@ -12,8 +12,22 @@ const ActiveMembers = () => {
     active: true,
   });
 
+  const loadActiveMembers = () => {
+    fetchMembers((data) => {
+      const now = new Date();
+      const activeMembers = data.filter((member) => {
+        const expirationDate = new Date(member.expirationDate);
+        const isExpired =
+          new Date(now.toDateString()) >=
+          new Date(expirationDate.toDateString());
+        return member.active !== false && !isExpired;
+      });
+      setMembers(activeMembers);
+    });
+  };
+
   useEffect(() => {
-    fetchMembers(setMembers);
+    loadActiveMembers();
   }, []);
 
   const handleEditClick = (member) => {
@@ -52,7 +66,7 @@ const ActiveMembers = () => {
 
       await axios.patch(`/api/v1/users/update-account/${id}`, payload);
       setEditingId(null);
-      fetchMembers(setMembers);
+      loadActiveMembers();
       toast.success("Member updated successfully");
     } catch (error) {
       console.error("Error updating member:", error.message);

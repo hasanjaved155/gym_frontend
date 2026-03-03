@@ -16,9 +16,12 @@ const ExpiringSoon = () => {
 
       const expiring = data.filter((member) => {
         const expirationDate = new Date(member.expirationDate);
+        const isExpired =
+          new Date(now.toDateString()) >=
+          new Date(expirationDate.toDateString());
         return (
           member.active !== false &&
-          expirationDate >= now &&
+          !isExpired &&
           expirationDate <= threeDaysFromNow
         );
       });

@@ -105,6 +105,19 @@ const Dashboard = () => {
           >
             ⏰ Expiring Soon
           </NavLink>
+          <NavLink
+            to="/dashboard/expired"
+            onClick={() => setIsSidebarOpen(false)}
+            className={({ isActive }) =>
+              `block px-6 py-3 text-gray-700 font-medium rounded-lg transition-all duration-200 border-l-4 ${
+                isActive
+                  ? "bg-yellow-50 text-yellow-600 border-yellow-600 shadow-md"
+                  : "border-transparent hover:bg-gray-50 hover:text-gray-900"
+              }`
+            }
+          >
+            ⏰ Expired
+          </NavLink>
         </nav>
       </div>
 

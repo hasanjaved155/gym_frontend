@@ -15,6 +15,7 @@ const DashboardStats = () => {
   const [stats, setStats] = useState({
     active: 0,
     expiringSoon: 0,
+    expired: 0,
   });
 
   const [active, setActive] = useState([]);
@@ -35,21 +36,28 @@ const DashboardStats = () => {
 
     let activeCount = 0;
     let expiringSoon = 0;
+    let expiredCount = 0;
 
     data.forEach((member) => {
       const expirationDate = new Date(member.expirationDate);
 
-      if (member.active !== false && expirationDate >= now) {
+      const isExpired =
+        new Date(now.toDateString()) >= new Date(expirationDate.toDateString());
+
+      if (member.active !== false && !isExpired) {
         activeCount++;
         if (expirationDate <= threeDaysFromNow) {
           expiringSoon++;
         }
+      } else {
+        expiredCount++;
       }
     });
 
     setStats({
       active: activeCount,
       expiringSoon,
+      expired: expiredCount,
     });
   };
 
@@ -87,6 +95,7 @@ const DashboardStats = () => {
       color: "#10B981",
     }, // Green (Healthy)
     { name: "Expiring Soon", value: stats.expiringSoon, color: "#F59E0B" }, // Yellow
+    { name: "Expired", value: stats.expired, color: "#EF4444" }, // Red
   ];
 
   return (
@@ -95,9 +104,9 @@ const DashboardStats = () => {
         Admin Dashboard
       </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
         <StatCard
-          title="Active Members"
+          title="Total Active Members"
           count={stats.active - stats.expiringSoon}
           color="border-green-500"
           link="/dashboard/active-members"
@@ -134,6 +143,27 @@ const DashboardStats = () => {
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          }
+        />
+        <StatCard
+          title="Expired Members"
+          count={stats.expired}
+          color="border-red-500"
+          link="/dashboard/expired"
+          icon={
+            <svg
+              className="w-6 h-6 md:w-8 md:h-8 text-red-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
               />
             </svg>
           }

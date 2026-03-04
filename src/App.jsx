@@ -9,7 +9,6 @@ import {
 import toast, { Toaster } from "react-hot-toast";
 import HomePage from "./pages/HomePage";
 import SchedulePage from "./pages/SchedulePage";
-import Chest from "./pages/Chest";
 import UserLogin from "./components/auth/UserLogin";
 import Contact from "./components/Contact";
 import Pricing from "./components/Pricing";
@@ -28,6 +27,7 @@ import ActiveMembers from "./dashboard/dashbaordComponents/ActiveMembers";
 import ExpiringSoon from "./dashboard/dashbaordComponents/ExpiringSoon ";
 import ExpiredMembers from "./dashboard/dashbaordComponents/ExpiredMembers";
 import ProtectedRoute from "./protectRoutes/ProtectedRoute";
+import ExerciseComponents from "./pages/ExerciseComponents";
 
 axios.defaults.baseURL = "https://pandey-gym.vercel.app";
 axios.defaults.withCredentials = true;
@@ -68,7 +68,7 @@ function AppContent() {
         {/* main pages */}
         <Route path="/" element={<HomePage />} />
         <Route path="/schedule" element={<SchedulePage />} />
-        <Route path="/chest" element={<Chest />} />
+        <Route path="/exercise_component" element={<ExerciseComponents />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/pricing" element={<Pricing />} />
 

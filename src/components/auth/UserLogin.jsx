@@ -25,112 +25,260 @@ export default function UserLogin() {
   };
 
   return (
-    <>
-      <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-3 sm:p-4 md:p-6 transition-colors duration-300">
-        <div className="bg-slate-800 rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-xs sm:max-w-md lg:max-w-lg p-5 sm:p-6 md:p-8 transition-colors duration-300">
-          {/* Header */}
-          <div className="mb-6 sm:mb-8">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-white transition-colors duration-300">
-              Sign In
-            </h1>
-            <p className="text-xs sm:text-sm text-center mt-2 text-slate-400 transition-colors duration-300">
-              Login and get started
-            </p>
-          </div>
+    <section className="relative min-h-screen md:w-[95rem] flex items-center justify-center overflow-hidden pt-20 pb-10">
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-black">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 right-0 w-96 h-96 bg-yellow-600/5 rounded-full blur-3xl animate-pulse delay-500"></div>
+      </div>
 
-          <form
-            onSubmit={(e) =>
-              handleLoginSubmit(
-                e,
-                login,
-                navigate,
-                setMessage,
-                setFormData,
-                setLoading,
-                formData,
-                setUser,
-              )
-            }
-            className="space-y-4 sm:space-y-6"
-          >
-            {/* Username */}
+      <div className="w-full max-w-md px-4 sm:px-6 relative z-10 animate-fade-in">
+        {/* Glow Effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-orange-600/20 rounded-3xl blur-2xl -z-10"></div>
 
-            {/* Email */}
-            <div>
-              <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-2 transition-colors duration-300">
-                Email Address
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="Enter email"
-                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border-2 rounded-lg bg-slate-700 border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30 transition-all duration-200"
-                required
-              />
+        {/* Main Card */}
+        <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl overflow-hidden hover:border-white/40 transition-all duration-500">
+          {/* Gradient Top Border */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500"></div>
+
+          <div className="p-8 md:p-10">
+            {/* Header */}
+            <div
+              className="mb-8 text-center animate-fade-in"
+              style={{ animationDelay: "0.1s" }}
+            >
+              <div className="inline-block mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-red-600 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
+                  <span className="text-3xl">🔐</span>
+                </div>
+              </div>
+
+              <h1 className="text-3xl md:text-4xl font-black text-white mb-2">
+                Welcome Back
+              </h1>
+              <p className="text-gray-400 text-sm">
+                Sign in to your Pandey Gym account
+              </p>
             </div>
-
-            {/* Password */}
-            <div>
-              <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-2 transition-colors duration-300">
-                Password
-              </label>
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                placeholder="Enter password"
-                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border-2 rounded-lg bg-slate-700 border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30 transition-all duration-200"
-                required
-              />
-            </div>
-
-            {/* Message */}
-            {message && (
+            <form
+              onSubmit={(e) =>
+                handleLoginSubmit(
+                  e,
+                  login,
+                  navigate,
+                  setMessage,
+                  setFormData,
+                  setLoading,
+                  formData,
+                  setUser,
+                )
+              }
+              className="space-y-6"
+            >
+              {/* Email Field */}
               <div
-                className={`p-3 sm:p-4 rounded-lg text-center font-medium text-sm sm:text-base transition-all duration-300 ${
-                  message.includes("successful")
-                    ? "bg-green-900/30 text-green-300 border border-green-500/50"
-                    : "bg-red-900/30 text-red-300 border border-red-500/50"
+                className="group animate-fade-in"
+                style={{ animationDelay: "0.2s" }}
+              >
+                <label className="block text-sm font-bold uppercase tracking-widest text-gray-300 mb-3">
+                  Email Address
+                </label>
+                <div className="relative">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-xl">
+                    ✉️
+                  </div>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="your.email@example.com"
+                    className="w-full pl-12 pr-4 py-3 text-white bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-orange-500 focus:bg-white/10 placeholder-gray-400 transition-all duration-300"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Password Field */}
+              <div
+                className="group animate-fade-in"
+                style={{ animationDelay: "0.3s" }}
+              >
+                <label className="block text-sm font-bold uppercase tracking-widest text-gray-300 mb-3">
+                  Password
+                </label>
+                <div className="relative">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-xl">
+                    🔑
+                  </div>
+                  <input
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    placeholder="••••••••"
+                    className="w-full pl-12 pr-4 py-3 text-white bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-orange-500 focus:bg-white/10 placeholder-gray-400 transition-all duration-300"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Forgot Password Link */}
+              <div
+                className="flex justify-end animate-fade-in"
+                style={{ animationDelay: "0.4s" }}
+              >
+                <Link
+                  to="/forget-password"
+                  className="text-sm font-semibold text-orange-400 hover:text-orange-300 transition-colors duration-300"
+                >
+                  Forgot Password?
+                </Link>
+              </div>
+
+              {/* Status Message */}
+              {message && (
+                <div
+                  className={`p-4 rounded-xl text-center font-semibold text-sm border animate-fade-in ${
+                    message.includes("successful")
+                      ? "bg-green-600/20 border-green-500/50 text-green-400"
+                      : "bg-red-600/20 border-red-500/50 text-red-400"
+                  }`}
+                  style={{ animationDelay: "0.5s" }}
+                >
+                  {message}
+                </div>
+              )}
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={loading}
+                className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 transform flex items-center justify-center gap-2 mt-8 ${
+                  loading
+                    ? "bg-gray-600/50 cursor-not-allowed"
+                    : "bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 hover:-translate-y-1 shadow-lg shadow-orange-600/50 hover:shadow-orange-500/60 text-white"
                 }`}
               >
-                {message}
+                {loading ? (
+                  <>
+                    <svg
+                      className="animate-spin w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                      />
+                    </svg>
+                    Signing in...
+                  </>
+                ) : (
+                  <>
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3v-1"
+                      />
+                    </svg>
+                    Sign In
+                  </>
+                )}
+              </button>
+            </form>
+            {/* Divider */}
+            <div className="relative my-8">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-white/10"></div>
               </div>
-            )}
-
-            <p className="text-xs sm:text-sm text-end mt-6 text-slate-400 transition-colors duration-300">
-              <Link
-                to="/forget-password"
-                className="font-semibold transition-colors text-blue-400 hover:text-blue-300"
+              {/* <div className="relative flex justify-center text-sm">
+                <span className="px-3 bg-black/40 text-gray-400">or</span>
+              </div> */}
+            </div>
+            {/* Social Login Placeholder */}
+            {/* <div
+              className="space-y-3 animate-fade-in"
+              style={{ animationDelay: "0.6s" }}
+            >
+              <button
+                type="button"
+                className="w-full py-3 px-4 rounded-xl border border-white/20 text-white font-semibold hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2"
               >
-                Forgot Password?
-              </Link>
-            </p>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full font-bold py-2 sm:py-2.5 px-4 rounded-lg transition-all duration-300 text-sm sm:text-base mt-2 sm:mt-8 bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:from-blue-500 hover:to-blue-400 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-blue-500/30"
+                <span className="text-xl">📧</span>
+                Continue with Email
+              </button>
+            </div> */}
+            {/* Sign Up Link */}
+            <div
+              className="mt-8 text-center animate-fade-in"
+              style={{ animationDelay: "0.7s" }}
             >
-              {loading ? "Logging in..." : "Login"}
-            </button>
-          </form>
-
-          {/* Footer */}
-          <p className="text-xs sm:text-sm text-center mt-6 text-slate-400 transition-colors duration-300">
-            Don't have an account?{" "}
-            <Link
-              to="/register"
-              className="font-semibold transition-colors text-blue-400 hover:text-blue-300"
+              <p className="text-gray-400 text-sm">
+                Don't have an account?{" "}
+                <Link
+                  to="/register"
+                  className="font-bold text-orange-400 hover:text-orange-300 transition-colors duration-300"
+                >
+                  Create one now
+                </Link>
+              </p>
+            </div>
+            {/* Footer Info */}
+            <div
+              className="mt-6 pt-6 border-t border-white/10 text-center text-xs text-gray-500 animate-fade-in"
+              style={{ animationDelay: "0.8s" }}
             >
-              Sign Up here
-            </Link>
-          </p>
+              <p>🔒 Your data is secure and encrypted</p>
+            </div>
+          </div>
         </div>
+
+        {/* Bottom Text */}
+        <p
+          className="text-center text-gray-400 text-xs mt-6 animate-fade-in"
+          style={{ animationDelay: "0.9s" }}
+        >
+          © 2024 Pandey Gym. All rights reserved.
+        </p>
       </div>
-    </>
+
+      <style>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 0.8s ease-out forwards;
+          opacity: 0;
+        }
+
+        .delay-500 {
+          animation-delay: 500ms;
+        }
+
+        .delay-1000 {
+          animation-delay: 1000ms;
+        }
+      `}</style>
+    </section>
   );
 }

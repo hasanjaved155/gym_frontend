@@ -1,4 +1,7 @@
 import { exercisesBiceps } from "./exercises/exerciseBiceps";
+import { exercisesCardio } from "./exercises/exerciseCardio";
+import { exercisesLegs } from "./exercises/exerciseLegs";
+import { exercisesShoulders } from "./exercises/exerciseShoulders";
 import { exercisesChest } from "./exercises/exercisesChest";
 import { exercisesTricep } from "./exercises/exercisesTricep";
 import { exercisesBack } from "./exercises/exercisesback";
@@ -9,7 +12,7 @@ const schedule = [
     workout: "Chest",
     emoji: "🫀",
     color: "from-red-600 to-red-700",
-    link: "/exercise_component",
+    link: "/schedule/exercise_component",
     warmup: {
       title1: "5-10 minutes light cardio",
       description: "Treadmill or Elliptical to get blood flowing",
@@ -107,7 +110,7 @@ const schedule = [
       },
     },
 
-    exercises: exercisesChest,
+    exercises: exercisesShoulders,
   },
   {
     day: "Saturday",
@@ -128,7 +131,7 @@ const schedule = [
       },
     },
 
-    exercises: exercisesChest,
+    exercises: exercisesLegs,
   },
   {
     day: "Sunday",
@@ -149,7 +152,7 @@ const schedule = [
       },
     },
 
-    exercises: exercisesChest,
+    exercises: exercisesCardio,
   },
 ];
 

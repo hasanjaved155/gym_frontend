@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -62,8 +62,22 @@ function AppContent() {
 
   return (
     <>
-      <Toaster />
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+        gutter={8}
+        toastOptions={{
+          duration: 4000,
+          style: {
+            background: "#1f2937",
+            color: "#fff",
+            borderRadius: "8px",
+            border: "1px solid rgba(255,255,255,0.1)",
+          },
+        }}
+      />
       <Navbar />
+
       <Routes>
         {/* main pages */}
         <Route path="/" element={<HomePage />} />

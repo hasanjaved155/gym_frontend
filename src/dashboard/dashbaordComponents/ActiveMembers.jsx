@@ -155,7 +155,7 @@ const ActiveMembers = () => {
                       <div className="flex gap-3 pt-2">
                         <button
                           onClick={() => handleSaveClick(member._id)}
-                          className="flex-1 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 shadow-sm transition-colors"
+                          className="flex-1 px-4 py-2 bg-blue-600 text-black text-sm font-medium rounded-lg hover:bg-blue-700 shadow-sm transition-colors"
                         >
                           Save Changes
                         </button>

@@ -4,10 +4,14 @@ import cablechestpress from "../exercisevideo/chestvideos/male-cable-chestpress-
 import dumbbellInclineChestPress from "../exercisevideo/chestvideos/male-dumbbell-incline-bench-press-front_q2q0T12.mp4";
 import butterFly from "../exercisevideo/chestvideos/male-Machine-machine-butter-fly-side.mp4";
 import chestPress from "../exercisevideo/chestvideos/male-Machine-machine-chest-press-front.mp4";
+import declinebench from "../exercisevideo/chestvideos/decline-guillotine-bench.mp4";
+import inclinebenchpress from "../exercisevideo/chestvideos/incline-bench-press.mp4";
 
 export const exercisesChest = [
   { title: "Push Up", video: pushup, emoji: "💪" },
   { title: "Bench Press", video: benchpress, emoji: "🏋️" },
+  { title: "Incline Bench Press", video: inclinebenchpress, emoji: "🏋️‍♂️" },
+  { title: "Decline Bench Press", video: declinebench, emoji: "🏋️‍♂️" },
   { title: "Cable Chest Press", video: cablechestpress, emoji: "🦾" },
   {
     title: "Dumbbell Incline Chest Press",

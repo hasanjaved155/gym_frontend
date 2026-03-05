@@ -6,7 +6,7 @@ const ForgetPassword = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-3 sm:p-4 md:p-6 transition-colors duration-300">
+    <div className="min-h-screen flex flex-col md:w-[95rem] items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-3 sm:p-4 md:p-6 transition-colors duration-300">
       <div className="bg-slate-800 rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-xs sm:max-w-md lg:max-w-lg p-5 sm:p-6 md:p-8 transition-colors duration-300">
         {/* Header */}
         <div className="mb-6 sm:mb-8">

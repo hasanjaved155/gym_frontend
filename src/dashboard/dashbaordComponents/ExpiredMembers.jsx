@@ -96,7 +96,7 @@ const ExpiredMembers = () => {
                   <button
                     onClick={() => handleReactivate(member._id)}
                     disabled={updatingId === member._id}
-                    className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 shadow-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-4 py-2 bg-green-600 text-black text-sm font-medium rounded-lg hover:bg-green-700 shadow-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {updatingId === member._id ? "Activating..." : "Set Active"}
                   </button>
@@ -160,7 +160,7 @@ const ExpiredMembers = () => {
                       <button
                         onClick={() => handleReactivate(member._id)}
                         disabled={updatingId === member._id}
-                        className="px-3 py-1.5 bg-green-600 text-white text-xs font-semibold rounded-md hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-3 py-1.5 bg-green-600 text-black text-xs font-semibold rounded-md hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {updatingId === member._id
                           ? "Activating..."

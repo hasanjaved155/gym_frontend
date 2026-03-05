@@ -7,7 +7,7 @@ const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-gray-100 relative">
+    <div className="flex min-h-screen md:w-[95rem] bg-gray-100 relative">
       {/* Mobile Toggle Button */}
       <button
         className="md:hidden fixed top-24 right-4 z-30 p-2 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors"

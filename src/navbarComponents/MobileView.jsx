@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const MobileView = ({ setIsDropdownOpen }) => {
   return (
     <>
-      <div className="md:hidden border-b border-gray-700 bg-gray-800/50">
+      <div className="md:hidden border-b w-56   border-gray-700 bg-gray-800/50">
         <Link
           to="/"
           className="block px-4 py-3 text-sm text-gray-300 hover:bg-gray-700/50 hover:text-white transition-colors"

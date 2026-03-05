@@ -26,7 +26,7 @@ const ExerciseComponents = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 py-8 px-4 sm:px-6 lg:px-8 font-sans">
+    <div className="min-h-screen md:w-[95rem] bg-slate-50 py-20 px-4 sm:px-6 lg:px-8 font-sans">
       <div className="max-w-7xl mx-auto">
         {/* Navigation */}
         <div className="mb-8 flex justify-start">

@@ -83,44 +83,50 @@ const ShowFeedbacks = ({ refresh }) => {
   };
 
   return (
-    <div className="border-t md:border-t-0 md:border-l border-gray-200 pt-6 md:pt-0 md:pl-6 h-full flex flex-col">
+    <div className="flex flex-col h-full">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-2xl font-bold text-gray-900">Recent Ratings</h3>
-        <span className="px-3 py-1 text-xs font-medium text-indigo-600 bg-indigo-100 rounded-full">
+        <h3 className="text-xl font-bold text-white">Recent Reviews</h3>
+        <span className="px-3 py-1 text-xs font-medium text-orange-400 bg-orange-600/20 border border-orange-500/50 rounded-full">
           {feedbacks.length} Reviews
         </span>
       </div>
 
       <div
         className="flex-1 overflow-y-auto pr-2 space-y-4 custom-scrollbar"
-        style={{ maxHeight: "400px" }}
+        style={{ maxHeight: "500px" }}
       >
         {feedbacks.length > 0 ? (
           feedbacks.map((item, index) =>
             editingId === item._id ? (
               <div
                 key={index}
-                className="bg-white p-5 rounded-xl border-2 border-indigo-500 shadow-md transition-all duration-300"
+                className="bg-white/10 p-5 rounded-2xl border-2 border-orange-500/50 shadow-md transition-all duration-300 backdrop-blur-xl animate-fade-in overflow-hidden"
               >
-                <div className="flex justify-between items-start mb-3">
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold text-indigo-600 text-sm">
-                      Editing Review
-                    </span>
-                  </div>
+                <div className="flex justify-between items-start mb-4">
+                  <span className="font-semibold text-orange-400 text-sm flex items-center gap-2">
+                    <svg
+                      className="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                    </svg>
+                    Editing Review
+                  </span>
                 </div>
 
-                <div className="flex mb-3">
+                {/* Star Rating - Responsive */}
+                <div className="flex justify-center gap-1 mb-4 flex-wrap">
                   {[...Array(5)].map((_, i) => {
                     const ratingValue = i + 1;
                     return (
                       <button
                         type="button"
                         key={ratingValue}
-                        className={`text-xl focus:outline-none transition-colors duration-200 ${
+                        className={`text-2xl sm:text-3xl focus:outline-none transition-all duration-200 flex-shrink-0 ${
                           ratingValue <= (editHover || editRating)
-                            ? "text-yellow-400"
-                            : "text-gray-300"
+                            ? "text-yellow-400 scale-110"
+                            : "text-gray-400 scale-100"
                         }`}
                         onClick={() => setEditRating(ratingValue)}
                         onMouseEnter={() => setEditHover(ratingValue)}
@@ -133,23 +139,23 @@ const ShowFeedbacks = ({ refresh }) => {
                 </div>
 
                 <textarea
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none text-sm text-gray-700 mb-3 resize-none"
+                  className="w-full p-3 border border-white/20 rounded-xl bg-white/5 text-white focus:outline-none focus:border-orange-500 focus:bg-white/10 placeholder-gray-400 text-sm mb-4 resize-none"
                   rows="3"
                   value={editFeedback}
                   onChange={(e) => setEditFeedback(e.target.value)}
                   placeholder="Update your feedback..."
                 ></textarea>
 
-                <div className="flex justify-end gap-2">
+                <div className="flex justify-end gap-2 flex-wrap">
                   <button
                     onClick={handleCancelEdit}
-                    className="px-3 py-1.5 text-xs font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+                    className="px-3 py-1.5 text-xs font-medium text-gray-300 bg-white/10 hover:bg-white/20 rounded-lg transition-all duration-300"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={() => handleUpdateFeedback(item._id)}
-                    className="px-3 py-1.5 text-xs font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors shadow-sm"
+                    className="px-3 py-1.5 text-xs font-medium text-white bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 rounded-lg transition-all duration-300 shadow-lg"
                   >
                     Save
                   </button>
@@ -158,26 +164,29 @@ const ShowFeedbacks = ({ refresh }) => {
             ) : (
               <div
                 key={index}
-                className="group relative bg-white p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300"
+                className="group relative bg-white/10 p-4 sm:p-5 rounded-2xl border border-white/20 shadow-md hover:shadow-lg hover:border-white/40 hover:bg-white/15 transition-all duration-300 backdrop-blur-xl animate-fade-in overflow-hidden"
+                style={{ animationDelay: `${index * 0.05}s` }}
               >
-                <div className="flex justify-between items-start">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="h-10 w-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-sm">
+                <div className="flex justify-between items-start mb-4 gap-2">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white font-bold shadow-lg flex-shrink-0 text-sm sm:text-base">
                       {item?.user?.avatar ? (
                         <img
                           src={item.user.avatar}
                           alt="User Avatar"
-                          className="h-10 w-10 rounded-full object-cover"
+                          className="h-10 w-10 sm:h-12 sm:w-12 rounded-full object-cover"
                         />
                       ) : (
-                        <span className="text-lg">U</span>
+                        <span>
+                          {item?.user?.username?.charAt(0).toUpperCase() || "U"}
+                        </span>
                       )}
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 text-sm">
-                        {item?.user?.username || "User"}
+                    <div className="min-w-0">
+                      <h4 className="font-bold text-white text-xs sm:text-sm truncate">
+                        {item?.user?.username || "Anonymous"}
                       </h4>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-gray-400">
                         {TimeAgo(item.createdAt)}
                       </p>
                     </div>
@@ -185,15 +194,15 @@ const ShowFeedbacks = ({ refresh }) => {
 
                   {/* Edit & Delete Buttons */}
                   {user?._id === item?.user?._id && (
-                    <div className="flex gap-2 sm:opacity-0 sm:group-hover:opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
+                    <div className="flex gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 flex-shrink-0">
                       <button
                         onClick={() => handleEditClick(item)}
-                        className="p-1.5 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
+                        className="p-1.5 sm:p-2 text-gray-400 hover:text-orange-400 hover:bg-orange-600/20 rounded-lg transition-all duration-300"
                         title="Edit"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4"
+                          className="h-3.5 w-3.5 sm:h-4 sm:w-4"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -208,12 +217,12 @@ const ShowFeedbacks = ({ refresh }) => {
                       </button>
                       <button
                         onClick={() => handleDelete(item._id)}
-                        className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        className="p-1.5 sm:p-2 text-gray-400 hover:text-red-400 hover:bg-red-600/20 rounded-lg transition-all duration-300"
                         title="Delete"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4"
+                          className="h-3.5 w-3.5 sm:h-4 sm:w-4"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -230,12 +239,13 @@ const ShowFeedbacks = ({ refresh }) => {
                   )}
                 </div>
 
-                <div className="flex mb-2">
+                {/* Rating Stars */}
+                <div className="flex gap-0.5 mb-3">
                   {[...Array(5)].map((_, i) => (
                     <svg
                       key={i}
-                      className={`h-4 w-4 ${
-                        i < item.rating ? "text-yellow-400" : "text-gray-200"
+                      className={`h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0 ${
+                        i < item.rating ? "text-yellow-400" : "text-gray-600"
                       }`}
                       fill="currentColor"
                       viewBox="0 0 20 20"
@@ -245,17 +255,18 @@ const ShowFeedbacks = ({ refresh }) => {
                   ))}
                 </div>
 
-                <p className="text-gray-600 text-sm leading-relaxed">
+                {/* Feedback Text */}
+                <p className="text-gray-300 text-xs sm:text-sm leading-relaxed line-clamp-3">
                   {item?.feedback}
                 </p>
               </div>
             ),
           )
         ) : (
-          <div className="flex flex-col items-center justify-center h-64 text-gray-400">
+          <div className="flex flex-col items-center justify-center h-64 text-gray-400 animate-fade-in">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-12 w-12 mb-2 opacity-50"
+              className="h-16 w-16 mb-3 opacity-50"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -267,10 +278,31 @@ const ShowFeedbacks = ({ refresh }) => {
                 d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
               />
             </svg>
-            <p>No reviews yet</p>
+            <p className="font-semibold text-sm">No reviews yet</p>
+            <p className="text-xs mt-1">
+              Be the first to share your experience!
+            </p>
           </div>
         )}
       </div>
+
+      <style>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 0.5s ease-out forwards;
+          opacity: 0;
+        }
+      `}</style>
     </div>
   );
 };
